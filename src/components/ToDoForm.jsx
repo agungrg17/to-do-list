@@ -22,34 +22,37 @@ const ToDoForm = ({fnAddTodos}) => {
 
     // buat tampilan 
     return (
-        <form 
-        style={{margin: "0.5em 0em"}}
-        onSubmit={formSubmitHandler}
-        >
-            {/* <input 
-                type="text" 
-                name="todo-baru" 
-                id="todoBaru"
-                placeholder="Input Kerjaan Baru"
-                style={{marginRight: "0.5em"}}
-                value={inputData}
-                onChange={inputOnChangeHandler}
-            /> */}
-            <TextField
-                type="text" 
-                name="todo-baru" 
-                id="todoBaru"
-                label="Input New Task"
-                style={{marginRight: "0.5em"}}
-                size="small"
-                variant="filled"
-                value={inputData}
-                onChange={inputOnChangeHandler}
+        <div className="todo-form">
+            <p>~ Task List To Do ~</p>
+            <form 
+                style={{margin: "0.5em 0em"}}
+                onSubmit={formSubmitHandler}
             >
-            </TextField>
-            {/* <button type="submit">tambah Kerjaan</button> */}
-            <Button type="submit" variant="contained" size="large" >Add To-Do</Button>
-        </form>
+                {/* <input 
+                    type="text" 
+                    name="todo-baru" 
+                    id="todoBaru"
+                    placeholder="Input Kerjaan Baru"
+                    style={{marginRight: "0.5em"}}
+                    value={inputData}
+                    onChange={inputOnChangeHandler}
+                /> */}
+                <TextField
+                    type="text" 
+                    name="todo-baru" 
+                    id="todoBaru"
+                    label="Input New Task"
+                    style={{marginRight: "0.5em"}}
+                    size="small"
+                    variant="filled"
+                    value={inputData}
+                    onChange={inputOnChangeHandler}
+                >
+                </TextField>
+                {/* <button type="submit">tambah Kerjaan</button> */}
+                <Button type="submit" variant="contained" size="large" >Add To-Do</Button>
+            </form>
+        </div>
     )
 
 }

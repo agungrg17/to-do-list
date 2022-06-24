@@ -19,6 +19,7 @@ const ToDoTable = (props) => {
     }
     // render
     return (
+        <div className="todo-list">
         <Table sx={{maxWidth: 650}} >
             {/* bagian kepala tabel */}
             <TableHead>
@@ -53,6 +54,7 @@ const ToDoTable = (props) => {
             })}
             </TableBody>
         </Table>
+        </div>
     )
 
 };

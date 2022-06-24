@@ -1,7 +1,7 @@
 import React, {useState} from "react";
 import ToDoForm from "../components/ToDoForm";
 import ToDoTable from "../components/ToDoTable";
-import { Typography } from "@mui/material";
+import { Typography, Button } from "@mui/material";
 
 const ToDo = () => {
     // suatu data yg menempel di container ToDo
@@ -44,16 +44,30 @@ const ToDo = () => {
         setTodos(newTodos)
     };
 
+    const removeCompleted = () => {
+        const todosRemove = todos.filter(todo => todo.isCompleted === false)
+        setTodos(todosRemove)
+    }
+
     // pembuat UI-nya (renderer)
     return (
         <>
-            <Typography variant="h5" component="div" >To - Do - List</Typography>
+        <div className="todo">
+            <Typography variant="h5" component="div" className="title" >To - Do - List</Typography>
             <div>
                 {/* lempar fungsi ke component via props */}
                 <ToDoForm fnAddTodos={addTodos} />
                 {/* kita harus lempar todos ke dalam tabel (props) */}
                 <ToDoTable todos={todos} fnCompleteTodo={completeTodo} />
+                <Button 
+                variant='outlined' 
+                color='error' 
+                onClick={removeCompleted}
+                style={{marginTop: "1em"}}
+                >
+                Remove Complete Task</Button>
             </div>
+        </div>
         </>
     )
 };
