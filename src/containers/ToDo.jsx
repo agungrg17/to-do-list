@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, {useState, useEffect} from "react";
 import ToDoForm from "../components/ToDoForm";
 import ToDoTable from "../components/ToDoTable";
 import { Typography, Button } from "@mui/material";
@@ -15,19 +15,19 @@ const ToDo = () => {
     ]);
 
     // harus punya fungsi untuk bisa nambah todos
-    const addTodos = (namaTodoBaru) => {
+    const addTodos = (newTodo) => {
         // logic utuk mencari id yg terbaru
         // asumsinya data akan selalu ada
         const newId = todos[todos.length - 1].id + 1;
 
         const objtodoBaru = {
             id: newId,
-            name: namaTodoBaru,
+            name: newTodo,
             isCompleted: false,
         };
 
-        const todoBaru = [...todos, objtodoBaru];
-        setTodos(todoBaru);
+        const newTodos = [...todos, objtodoBaru];
+        setTodos(newTodos);
 
     };
 
@@ -47,7 +47,29 @@ const ToDo = () => {
     const removeCompleted = () => {
         const todosRemove = todos.filter(todo => todo.isCompleted === false)
         setTodos(todosRemove)
-    }
+    };
+
+    
+  // Di sini kita akan mencoba menggunakan useEffect
+  // untuk mengganti title yang ada
+
+  // HATI HATI
+  // useEffect menerima DUA paramater
+  // parameter-1 adalah fungsi yang akan dijalankan
+  // parameter-2 adalah list dependensi terhadap useEffect
+  //   bila kosong, untuk tiap state yang berubah, useEffect akan DIJALANKAN terus !
+  useEffect(
+    // fn Handler
+    () => {
+      let textTitle = 'Todos: ' + todos.length;
+      console.log(textTitle);
+      document.title = textTitle;
+    },
+    // Dependency list
+    // Di sini kita menyatakan bahwa useEffect akan selalu dijalankan lagi
+    // apabila state todos berubah
+    [todos]
+  );
 
     // pembuat UI-nya (renderer)
     return (
